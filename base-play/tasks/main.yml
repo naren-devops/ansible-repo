@@ -1,0 +1,7 @@
+---
+# - hosts: "{{ env}}"
+#   user: vagrant
+#   become: true
+#   become_method: sudo
+
+- include: package_install.yml

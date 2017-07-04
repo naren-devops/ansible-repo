@@ -1,0 +1,51 @@
+---
+- hosts: "{{ env}}"
+  user: vagrant
+  become: true
+  become_method: sudo
+
+  vars_files:
+    - ../vars/main.yml
+
+  tasks:
+   - name: "install git"
+     yum:
+      name: "{{ item }}"
+      state: present
+     with_items:
+      - ntp
+      - git
+      - httpd
+      - wget
+
+   - name: start and enable httpd
+     service:
+      name: httpd
+      state: stopped
+      enabled: true
+
+  #  - name: cmd based service start
+  #    command: "service httpd start"
+  #    when:
+   #
+  #  - name: enable httpd at boot
+  #    command: "chkconfig httpd on"
+
+
+   - name: Create base dir
+     file:
+      path: "{{app_dir}}"
+      state: absent
+      group: "vagrant"
+      owner: "vagrant"
+      mode: 0744
+
+
+  #  - name: "install ntp"
+  #    yum:
+  #     name: ntp
+  #     state: present
+  #  - name: "install httpd"
+  #    yum:
+  #     name: httpd
+  #     state: present
