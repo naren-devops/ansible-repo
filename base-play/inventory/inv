@@ -1,0 +1,16 @@
+[all]
+168.191.2.1
+171.128.4.5
+localhost
+  vars:
+    - jdk_version: 1.8
+    - git_version: 1.8
+
+[web]
+localhost
+
+[app]
+168.191.2.1
+
+[db]
+171.128.4.5

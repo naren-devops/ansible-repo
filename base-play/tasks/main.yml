@@ -1,7 +1,14 @@
 ---
-# - hosts: "{{ env}}"
-#   user: vagrant
-#   become: true
-#   become_method: sudo
+- hosts: "localhost"
+  user: vagrant
+  become: true
+  become_method: sudo
 
-- include: package_install.yml
+  vars_files:
+    - ../vars/main.yml
+
+  handlers:
+    - include: ../handlers/main.yml
+# - include: package_install.yml
+  tasks:
+    - include: nginx_install.yml

@@ -1,1 +1,4 @@
 app_dir: "/home/vagrant/app-dir"
+nginx_repo: "http://nginx.org/packages/centos/7/$basearch/"
+user: "nginx"
+port: 8080

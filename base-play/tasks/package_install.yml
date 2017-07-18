@@ -1,5 +1,5 @@
 ---
-- hosts: "{{ env}}"
+- hosts: localhost
   user: vagrant
   become: true
   become_method: sudo
@@ -17,29 +17,55 @@
       - git
       - httpd
       - wget
-
-   - name: start and enable httpd
-     service:
+     when:
+      - ansible_os_family == 'RedHat'
+   - name: "remove httpd"
+     yum:
       name: httpd
-      state: stopped
-      enabled: true
-
-  #  - name: cmd based service start
-  #    command: "service httpd start"
-  #    when:
-   #
-  #  - name: enable httpd at boot
-  #    command: "chkconfig httpd on"
-
-
-   - name: Create base dir
-     file:
-      path: "{{app_dir}}"
       state: absent
-      group: "vagrant"
-      owner: "vagrant"
-      mode: 0744
 
+  #  - name: start and enable httpd
+  #    service:
+  #     name: httpd
+  #     state: started
+  #     enabled: true
+  #    register: apache_running
+  #
+  #  - name: display apache registered variable
+  #    debug:
+  #     msg: "{{apache_running}}"
+  #
+  #  - name: Display the registered variable
+  #    debug:
+  #     msg: "{{ apache_running.state}}"
+  #
+  #  - name: Run command
+  #    command: "service httpd status"
+  #    register: output
+  #    when: apache_running.state != 'started'
+  #
+  #  - name: debug
+  #    debug:
+  #     msg:  "{{ hostvars['localhost']['ansible_hostname'] }}"
+  #
+  # #  - name: cmd based service start
+  # #    command: "service httpd start"
+  # #    when:
+  #  #
+  # #  - name: enable httpd at boot
+  # #    command: "chkconfig httpd on"
+  #
+  #
+  #  - name: Create base dir
+  #    file:
+  #     path: "{{app_dir}}"
+  #     state: absent
+  #     group: "vagrant"
+  #     owner: "vagrant"
+  #     mode: 0744
+  #
+  #  - debug:
+  #     msg: "{{ hostvars['db01.companyh.domain.com'].ansibble_os_family }}"
 
   #  - name: "install ntp"
   #    yum:
