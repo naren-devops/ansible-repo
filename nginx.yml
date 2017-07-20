@@ -1,0 +1,27 @@
+---
+- hosts: "localhost"
+  user: vagrant
+  become: true
+  become_method: sudo
+
+  vars_files:
+    - vars/htpasswd_passwords.yml
+
+  roles:
+    - { role: nginx }
+
+# - hosts: "app"
+#   user: vagrant
+#   become: true
+#   become_method: sudo
+#
+#   roles:
+#     - { role: jboss }
+#
+# - hosts: "db"
+#   user: vagrant
+#   become: true
+#   become_method: sudo
+#
+#   roles:
+#     - { role: mongodb/cassandra }

@@ -34,10 +34,12 @@ http {
         listen     {{ port }};
 
         location / {
-         proxy_pass  localhost:9000;
+         proxy_pass  http://0.0.0.0:9000;
          proxy_http_version 1.1;
          proxy_set_header Connection "Keep-Alive";
          proxy_set_header Proxy-Connection "Keep-Alive";
+         auth_basic "Restricted";
+         auth_basic_user_file {{ auth_file_path }};
         }
 
 
