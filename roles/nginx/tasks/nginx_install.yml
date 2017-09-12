@@ -28,20 +28,20 @@
       group: root
     notify: restart nginx
 
-  - name: Install apache httpd toolssss
-    yum:
-      name: httpd-tools
-      state: present
+#  - name: Install apache httpd toolssss
+#    yum:
+#      name: httpd-tools
+#      state: present
 
-  - name: instal passlib
-    command: pip install passlib
+#  - name: instal passlib
+#    command: pip install passlib
 
-  - name: create user for authenticatiion
-    htpasswd:
-      path: "{{ auth_file_path }}"
-      name: admin
-      password: "{{ admin_passwd }}"
-      owner: nginx
-      group: nginx
-      mode: 0644
-    notify: restart nginx
+#  - name: create user for authenticatiion
+#    htpasswd:
+#      path: "{{ auth_file_path }}"
+#      name: admin
+#      password: "{{ admin_passwd }}"
+#      owner: nginx
+#      group: nginx
+#      mode: 0644
+#    notify: restart nginx

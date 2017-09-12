@@ -1,6 +1,6 @@
 #app_dir: "/home/vagrant/app-dir"
 nginx_repo: "http://nginx.org/packages/centos/7/$basearch/"
 user: "nginx"
-port: 8080
+port: 8180
 password: "default"
 auth_file_path: "/etc/nginx/.htpasswd"

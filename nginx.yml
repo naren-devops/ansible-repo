@@ -1,11 +1,11 @@
 ---
-- hosts: "localhost"
-  user: vagrant
+- hosts: "tag_Name_Docker_Node1"
+  user: ec2-user
   become: true
   become_method: sudo
 
-  vars_files:
-    - vars/htpasswd_passwords.yml
+  #vars_files:
+  #  - vars/htpasswd_passwords.yml
 
   roles:
     - { role: nginx }
